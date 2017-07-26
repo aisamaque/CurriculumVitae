@@ -1,0 +1,123 @@
+@model CurriculumVitae.DomainStandard.Models.Profile
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper">
+    <div class="sidebar-wrapper">
+        <div class="profile-container">
+            <img class="profile img-rounded img-thumbnail" src="@Html.DisplayFor(model => model.ProfileURL)" alt="" />
+            <h1 class="name">@Html.DisplayFor(model => model.Name)</h1>
+            <h3 class="tagline">@Html.DisplayFor(model => model.Tagline)</h3>
+        </div><!--//profile-container-->
+
+        <div class="contact-container container-block">
+            <ul class="list-unstyled contact-list">
+                @foreach (var con in Model.Contacts)
+                {
+                    <li class="@con.Type"><i class="@con.Icon"></i><a href="@con.Value">@con.Name</a></li>
+                }
+            </ul>
+        </div><!--//contact-container-->
+
+        <div class="education-container container-block">
+            <h2 class="container-block-title">Formação</h2>
+            @foreach (var edu in Model.Educations)
+            {
+                <div class="item">
+                    <h4 class="degree">@edu.Name</h4>
+                    <h5 class="meta">@edu.University</h5>
+                    <div class="time">@edu.Years</div>
+                </div><!--//item-->
+            }
+
+        </div><!--//education-container-->
+
+        <div class="languages-container container-block">
+            <h2 class="container-block-title">Idiomas</h2>
+            <ul class="list-unstyled interests-list">
+                @foreach (var lan in Model.Languages)
+                {
+                    <li>@lan.Name <span class="lang-desc">(@lan.Level)</span></li>
+                }
+            </ul>
+        </div><!--//languages-->
+
+        <div class="interests-container container-block">
+            <h2 class="container-block-title">Interesses</h2>
+            <ul class="list-unstyled interests-list">
+                @foreach (var x in Model.Interest)
+                {
+                    <li>@x.Name</li>
+                }
+            </ul>
+        </div><!--//interests-->
+
+    </div><!--//sidebar-wrapper-->
+
+    <div class="main-wrapper">
+
+        @foreach (var Car in Model.CareerProfile)
+{
+            <section class="section summary-section">
+                <h2 class="section-title"><i class="fa fa-user"></i>Resumo</h2>
+                <div class="summary">
+                    <p>@Car.Summary</p>
+                </div><!--//summary-->
+            </section><!--//section-->
+
+            <section class="section experiences-section">
+                <h2 class="section-title"><i class="fa fa-briefcase"></i>Experiência Profissional</h2>
+
+                @foreach (var exp in @Car.Experiences)
+            {
+                    <div class="item">
+                        <div class="meta">
+                            <div class="upper-row">
+                                <h3 class="job-title">@exp.Name</h3>
+                                <div class="time">@exp.Period</div>
+                            </div><!--//upper-row-->
+                            <div class="company">@exp.Company</div>
+                        </div><!--//meta-->
+                        <div class="details">
+                            @foreach (var y in exp.Details)
+                        {
+                                <p>@y.Value</p>
+                        }
+                        </div><!--//details-->
+                    </div><!--//item-->
+            }
+            </section><!--//experiences-section-->
+
+            <section class="section projects-section">
+                <h2 class="section-title"><i class="fa fa-archive"></i>Projetos</h2>
+                @foreach (var pro in @Car.Projects)
+            {
+                    <div class="item">
+                        <span class="project-title">@pro.Name</span> -
+                        <span class="project-tagline">@pro.Value</span><div class="item">
+                        </div>
+                    </div>
+            }
+            </section><!--//projects-section-->
+
+            <section class="skills-section section">
+                <h2 class="section-title"><i class="fa fa-rocket"></i>Conhecimentos &amp; Proficiência</h2>
+                <div class="skillset">
+                    @foreach (var skll in @Car.Skills.OrderByDescending(x=>x.Level))
+                {
+                        <div class="item">
+                            <h3 class="level-title">@skll.Name</h3>
+                            <div class="level-bar">
+                                <div class="level-bar-inner" data-level="@skll.Level%">
+                                </div>
+                            </div><!--//level-bar-->
+                        </div><!--//item-->
+                }
+                </div>
+            </section><!--//skills-section-->
+}
+    </div><!--//main-body-->
+</div>
