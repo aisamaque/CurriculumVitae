@@ -322,10 +322,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CurriculumVitae.Application\CurriculumVitae.Application.csproj">
-      <Project>{e51de689-1f1c-4db8-89da-e48d61d2127c}</Project>
-      <Name>CurriculumVitae.Application</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CurriculumVitae.Data\CurriculumVitae.Data.csproj">
       <Project>{bf57d2d6-3d34-4787-be12-7fe2bcf974cf}</Project>
       <Name>CurriculumVitae.Data</Name>
