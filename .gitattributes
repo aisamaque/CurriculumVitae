@@ -3,9 +3,6 @@
 ###############################################################################
 * text=auto
 
-$ cat .gitattributes
-*.rb linguist-language=C#
-
 ###############################################################################
 # Set default behavior for command prompt diff.
 #
